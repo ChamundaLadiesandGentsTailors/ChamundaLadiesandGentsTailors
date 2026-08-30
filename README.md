@@ -28,3 +28,7 @@ For Azure, upload index.html, styles.css and script.js as the website files. No 
 
 ## Google Business Profile
 The uploaded Google Business Profile QR confirms the profile name as Chamunda Ladies and Gents Tailors. Use the profile's exact share/directions URL after copying it from Google; the current site uses a Google Maps search link as a safe placeholder.
+
+
+## V3 fix
+Added a floating right-side Back to Top button that appears after scrolling and smoothly returns to the top.

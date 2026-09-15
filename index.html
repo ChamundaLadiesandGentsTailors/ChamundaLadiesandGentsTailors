@@ -1,126 +1,784 @@
+
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Chamunda Ladies and Gents Tailors | Tailor in Sector 24, Gandhinagar</title>
-  <meta name="description" content="Chamunda Ladies and Gents Tailors in Sector 24, Gandhinagar. Ladies and gents tailoring, custom stitching, fitting and alteration services near Ambaji Chowk.">
-  <meta name="robots" content="index,follow">
-  <meta name="theme-color" content="#24151b">
-  <meta property="og:title" content="Chamunda Ladies and Gents Tailors">
-  <meta property="og:description" content="Ladies & gents tailoring, custom stitching and alterations in Sector 24, Gandhinagar.">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2324151b'/%3E%3Cpath d='M25 70L47 25l8 18 10-18 12 45' fill='none' stroke='%23d6a45b' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chamunda Ladies & Gents Tailors | Sector 24, Gandhinagar</title>
+    <meta name="description" content="Chamunda Ladies & Gents Tailors in Sector 24, Gandhinagar. Ladies and gents tailoring, custom stitching, fitting and alterations near Ambaji Chowk." />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#5c071f" />
+    <link rel="icon" href="images/chamunda-logo.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --wine:#6d0928;
+            --wine-dark:#3d0618;
+            --wine-2:#9b123d;
+            --gold:#c9973e;
+            --gold-light:#f2d99b;
+            --cream:#fffaf0;
+            --cream-2:#f5ead6;
+            --ink:#1e1720;
+            --muted:#716770;
+            --white:#fff;
+            --shadow:0 20px 60px rgba(61,6,24,.14);
+            --radius:26px;
+            --ease:cubic-bezier(.2,.75,.2,1);
+        }
+
+        *{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth}
+        body{
+            font-family:"DM Sans",sans-serif;
+            color:var(--ink);
+            background:var(--cream);
+            overflow-x:hidden;
+        }
+        a{text-decoration:none;color:inherit}
+        button{font:inherit}
+        img{display:block;max-width:100%}
+
+        /* ---------- background details ---------- */
+        body:before{
+            content:"";
+            position:fixed;inset:0;pointer-events:none;z-index:-1;
+            opacity:.28;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(201,151,62,.12) 0 1px, transparent 1px),
+                radial-gradient(circle at 80% 60%, rgba(109,9,40,.08) 0 1px, transparent 1px);
+            background-size:34px 34px, 52px 52px;
+        }
+
+        .progress{
+            position:fixed;left:0;top:0;height:3px;width:100%;z-index:10000;
+            background:transparent;
+        }
+        .progress span{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--gold),#fff,var(--wine));}
+
+        /* ---------- loader ---------- */
+        .loader{
+            position:fixed;inset:0;z-index:9999;
+            display:grid;place-items:center;
+            background:radial-gradient(circle at 50% 45%,#8d1037,var(--wine-dark) 65%);
+            color:#fff;
+            transition:opacity .7s var(--ease),visibility .7s;
+        }
+        .loader.hide{opacity:0;visibility:hidden}
+        .loader-inner{text-align:center}
+        .loader-logo{
+            width:108px;height:108px;margin:auto;border-radius:50%;object-fit:cover;
+            border:5px solid rgba(255,255,255,.9);
+            box-shadow:0 0 0 10px rgba(201,151,62,.18),0 25px 70px rgba(0,0,0,.3);
+            animation:loaderPulse 1.8s ease-in-out infinite;
+        }
+        .loader-title{font:700 2.1rem "Cormorant Garamond",serif;letter-spacing:.16em;margin-top:20px}
+        .loader-sub{font-size:.72rem;letter-spacing:.25em;opacity:.72;margin-top:3px}
+        .loader-line{width:150px;height:2px;background:var(--gold);margin:20px auto;overflow:hidden}
+        .loader-line:after{content:"";display:block;width:50%;height:100%;background:#fff;animation:loaderLine 1.2s ease-in-out infinite}
+        @keyframes loaderPulse{50%{transform:scale(1.05);box-shadow:0 0 0 16px rgba(201,151,62,.1),0 25px 70px rgba(0,0,0,.3)}}
+        @keyframes loaderLine{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
+
+        /* ---------- nav ---------- */
+        .nav{
+            position:fixed;top:0;left:0;width:100%;z-index:1000;
+            padding:18px 5vw;
+            display:flex;align-items:center;justify-content:space-between;gap:30px;
+            color:#fff;
+            transition:.35s var(--ease);
+        }
+        .nav.scrolled{
+            background:rgba(61,6,24,.92);
+            backdrop-filter:blur(18px);
+            box-shadow:0 10px 35px rgba(0,0,0,.12);
+            padding-top:10px;padding-bottom:10px;
+        }
+        .brand{display:flex;align-items:center;gap:12px}
+        .brand img{
+            width:52px;height:52px;border-radius:50%;object-fit:cover;
+            border:2px solid rgba(255,255,255,.75);
+            background:#fff;
+        }
+        .brand strong{font:700 1.35rem "Cormorant Garamond",serif;letter-spacing:.1em;display:block}
+        .brand small{font-size:.58rem;letter-spacing:.16em;opacity:.75;display:block}
+        .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+        .nav-links a{
+            font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+            opacity:.88;position:relative;
+        }
+        .nav-links a:after{
+            content:"";position:absolute;left:0;bottom:-8px;width:0;height:2px;
+            background:var(--gold-light);transition:.3s;
+        }
+        .nav-links a:hover:after,.nav-links a.active:after{width:100%}
+        .nav-cta{
+            padding:12px 18px;border-radius:999px;
+            background:linear-gradient(135deg,var(--gold),#e8bd69);
+            color:var(--wine-dark)!important;
+            box-shadow:0 8px 24px rgba(201,151,62,.24);
+        }
+        .nav-cta:after{display:none!important}
+        .hamb{display:none;background:none;border:0;color:#fff;width:42px;height:42px;cursor:pointer}
+        .hamb span{display:block;width:23px;height:2px;background:#fff;margin:5px auto;transition:.25s}
+
+        /* ---------- hero ---------- */
+        .hero{
+            min-height:780px;
+            position:relative;
+            display:flex;align-items:center;
+            overflow:hidden;
+            color:#fff;
+            background:#3d0618;
+        }
+        .hero-cover{
+            position:absolute;inset:0;
+            background:
+                linear-gradient(90deg,rgba(49,4,20,.96) 0%,rgba(61,6,24,.83) 38%,rgba(61,6,24,.28) 72%,rgba(61,6,24,.6) 100%),
+                url('images/chamunda-cover.png') center/cover no-repeat;
+            transform:scale(1.04);
+            animation:heroZoom 14s ease-out forwards;
+        }
+        .hero:after{
+            content:"";position:absolute;inset:auto 0 0;height:180px;
+            background:linear-gradient(transparent,var(--cream));
+        }
+        .hero-content{
+            width:min(1280px,90%);margin:0 auto;padding-top:100px;position:relative;z-index:2;
+            display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;
+        }
+        .eyebrow{
+            display:inline-flex;align-items:center;gap:10px;
+            color:var(--gold-light);font-size:.74rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+            margin-bottom:18px;
+        }
+        .eyebrow i{width:34px;height:1px;background:var(--gold)}
+        .hero h1{
+            font:600 clamp(3.6rem,7vw,7.4rem)/.82 "Cormorant Garamond",serif;
+            letter-spacing:-.035em;
+            max-width:780px;
+        }
+        .hero h1 em{font-style:normal;color:var(--gold-light)}
+        .hero-copy{
+            margin-top:26px;max-width:610px;font-size:1.04rem;line-height:1.85;color:rgba(255,255,255,.8);
+        }
+        .hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px}
+        .btn{
+            display:inline-flex;align-items:center;justify-content:center;gap:10px;
+            min-height:52px;padding:0 22px;border-radius:999px;
+            font-weight:700;font-size:.82rem;letter-spacing:.05em;
+            transition:.3s var(--ease);border:1px solid transparent;
+        }
+        .btn.primary{background:linear-gradient(135deg,var(--gold),#f1cd82);color:var(--wine-dark);box-shadow:0 15px 35px rgba(0,0,0,.2)}
+        .btn.outline{border-color:rgba(255,255,255,.45);color:#fff;background:rgba(255,255,255,.06);backdrop-filter:blur(10px)}
+        .btn:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(0,0,0,.2)}
+        .hero-points{display:flex;flex-wrap:wrap;gap:20px;margin-top:28px;color:rgba(255,255,255,.72);font-size:.76rem}
+        .hero-points span{display:flex;align-items:center;gap:7px}
+        .hero-points b{color:var(--gold-light)}
+        .hero-logo-wrap{display:flex;justify-content:center;position:relative}
+        .hero-logo-ring{
+            width:min(390px,70vw);aspect-ratio:1;border-radius:50%;
+            padding:14px;background:rgba(255,255,255,.11);
+            border:1px solid rgba(255,255,255,.38);
+            box-shadow:0 30px 90px rgba(0,0,0,.28);
+            backdrop-filter:blur(5px);
+            animation:float 5s ease-in-out infinite;
+        }
+        .hero-logo-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:8px solid #fff}
+        .floating-card{
+            position:absolute;right:2%;bottom:8%;
+            padding:15px 18px;border-radius:18px;
+            background:rgba(255,255,255,.93);color:var(--wine-dark);
+            box-shadow:0 18px 45px rgba(0,0,0,.2);min-width:180px;
+            animation:float 4s ease-in-out 1s infinite;
+        }
+        .floating-card small{font-size:.62rem;letter-spacing:.12em;color:var(--muted);font-weight:700}
+        .floating-card strong{display:block;margin-top:3px;font-size:.86rem}
+        .hero-scroll{
+            position:absolute;bottom:40px;left:5vw;z-index:3;
+            font-size:.64rem;letter-spacing:.2em;opacity:.65;
+        }
+        @keyframes heroZoom{from{transform:scale(1.04)}to{transform:scale(1.1)}}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+        /* ---------- ticker ---------- */
+        .ticker{
+            background:var(--wine);color:#fff;overflow:hidden;border-top:1px solid rgba(255,255,255,.2);
+            box-shadow:0 10px 30px rgba(61,6,24,.12);
+        }
+        .ticker-track{
+            width:max-content;display:flex;gap:30px;align-items:center;
+            padding:15px 0;white-space:nowrap;
+            animation:marquee 25s linear infinite;
+            font-size:.73rem;font-weight:700;letter-spacing:.17em;
+        }
+        .ticker-track b{color:var(--gold)}
+        @keyframes marquee{to{transform:translateX(-50%)}}
+
+        /* ---------- shared sections ---------- */
+        .section{padding:110px 5vw;position:relative}
+        .container{width:min(1200px,100%);margin:auto}
+        .section-head{max-width:760px;margin-bottom:55px}
+        .section-head.center{text-align:center;margin-left:auto;margin-right:auto}
+        .section-head h2,.about-copy h2,.contact-copy h2{
+            font:600 clamp(2.8rem,5vw,5rem)/.92 "Cormorant Garamond",serif;
+            letter-spacing:-.03em;color:var(--wine-dark);
+        }
+        .section-head h2 em,.about-copy h2 em,.contact-copy h2 em{font-style:italic;color:var(--wine-2)}
+        .section-head p{margin-top:18px;color:var(--muted);line-height:1.8;max-width:650px}
+        .center p{margin-left:auto;margin-right:auto}
+
+        /* ---------- service cards ---------- */
+        .service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+        .service{
+            position:relative;padding:32px 27px 30px;min-height:285px;
+            background:rgba(255,255,255,.72);
+            border:1px solid rgba(109,9,40,.1);
+            border-radius:var(--radius);
+            overflow:hidden;transition:.45s var(--ease);
+        }
+        .service:before{
+            content:"";position:absolute;inset:auto -30px -50px;width:150px;height:150px;border-radius:50%;
+            background:rgba(201,151,62,.1);transition:.45s;
+        }
+        .service:hover{transform:translateY(-10px);box-shadow:var(--shadow);border-color:rgba(201,151,62,.5)}
+        .service:hover:before{transform:scale(1.6)}
+        .service-num{font-size:.66rem;letter-spacing:.2em;color:var(--gold);font-weight:800}
+        .service-icon{font-size:2rem;color:var(--wine);margin:28px 0 12px}
+        .service h3{font:700 1.65rem "Cormorant Garamond",serif;color:var(--wine-dark)}
+        .service p{font-size:.82rem;line-height:1.7;color:var(--muted);margin:8px 0 18px}
+        .service a{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--wine-2)}
+
+        /* ---------- signature banner ---------- */
+        .signature{padding:0 5vw 110px}
+        .signature-card{
+            width:min(1200px,100%);margin:auto;position:relative;overflow:hidden;border-radius:34px;
+            min-height:420px;display:flex;align-items:end;padding:44px;
+            background:
+                linear-gradient(90deg,rgba(61,6,24,.93),rgba(61,6,24,.38)),
+                url('images/chamunda-cover.png') center/cover no-repeat;
+            box-shadow:var(--shadow);
+        }
+        .signature-card:before{content:"";position:absolute;inset:15px;border:1px solid rgba(242,217,155,.45);border-radius:24px;pointer-events:none}
+        .signature-content{position:relative;z-index:2;max-width:640px;color:#fff}
+        .signature-content .script{font:400 2.7rem "Great Vibes",cursive;color:var(--gold-light)}
+        .signature-content h3{font:600 clamp(2.3rem,4vw,4.5rem)/.95 "Cormorant Garamond",serif;margin:7px 0 12px}
+        .signature-content p{color:rgba(255,255,255,.75);line-height:1.7;max-width:560px}
+
+        /* ---------- about ---------- */
+        .about{background:#f7eddc}
+        .about-grid{width:min(1200px,100%);margin:auto;display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
+        .about-visual{position:relative;min-height:500px;display:grid;place-items:center}
+        .about-visual:before{
+            content:"";position:absolute;width:78%;aspect-ratio:1;border-radius:50%;
+            background:linear-gradient(145deg,#fff,var(--cream-2));box-shadow:var(--shadow);
+        }
+        .about-logo{position:relative;width:min(360px,70%);border-radius:50%;box-shadow:0 30px 60px rgba(61,6,24,.15);border:9px solid #fff}
+        .stamp{
+            position:absolute;right:5%;bottom:8%;width:145px;height:145px;border-radius:50%;
+            display:grid;place-items:center;text-align:center;padding:20px;
+            background:var(--wine);color:#fff;border:4px solid var(--gold);
+            font-size:.67rem;line-height:1.4;letter-spacing:.12em;
+            transform:rotate(9deg);box-shadow:0 15px 35px rgba(61,6,24,.2);
+        }
+        .stamp strong{color:var(--gold-light)}
+        .about-copy p{color:var(--muted);line-height:1.85;margin-top:18px;max-width:620px}
+        .points{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:27px}
+        .point{display:flex;gap:9px;align-items:center;font-size:.78rem;font-weight:700;color:var(--wine-dark)}
+        .point b{color:var(--gold)}
+
+        /* ---------- process ---------- */
+        .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(109,9,40,.14);border:1px solid rgba(109,9,40,.14)}
+        .step{padding:35px 28px;background:var(--cream);position:relative}
+        .step:after{content:"→";position:absolute;right:-13px;top:40px;z-index:2;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--wine-dark);font-weight:900}
+        .step:last-child:after{display:none}
+        .step>b{font:700 1rem "Cormorant Garamond",serif;color:var(--gold)}
+        .step h3{font:700 1.65rem "Cormorant Garamond",serif;color:var(--wine-dark);margin:18px 0 7px}
+        .step p{font-size:.8rem;line-height:1.7;color:var(--muted)}
+
+        /* ---------- gallery ---------- */
+        .gallery{background:#fff}
+        .gallery-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-auto-rows:230px;gap:15px}
+        .gallery-item{position:relative;overflow:hidden;border-radius:22px;background:var(--cream-2)}
+        .gallery-item:first-child{grid-row:span 2}
+        .gallery-item img{width:100%;height:100%;object-fit:cover;transition:.65s var(--ease)}
+        .gallery-item:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(35,4,16,.75));opacity:.8}
+        .gallery-label{position:absolute;left:22px;bottom:18px;z-index:2;color:#fff}
+        .gallery-label strong{font:700 1.6rem "Cormorant Garamond",serif;display:block}
+        .gallery-label small{font-size:.65rem;letter-spacing:.1em;opacity:.8}
+        .gallery-item:hover img{transform:scale(1.08)}
+
+        /* ---------- contact ---------- */
+        .contact{padding:110px 5vw 150px;background:linear-gradient(145deg,var(--wine-dark),var(--wine));color:#fff;position:relative;overflow:hidden}
+        .contact:before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;right:-220px;top:-280px;border:1px solid rgba(242,217,155,.2);box-shadow:0 0 0 60px rgba(242,217,155,.03),0 0 0 120px rgba(242,217,155,.02)}
+        .contact-grid{width:min(1200px,100%);margin:auto;display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:center;position:relative;z-index:2}
+        .contact .eyebrow{color:var(--gold-light)}
+        .contact-copy h2{color:#fff}
+        .contact-copy h2 em{color:var(--gold-light)}
+        .contact-copy>p{max-width:650px;line-height:1.8;color:rgba(255,255,255,.7);margin:18px 0 28px}
+        .contact-list{display:grid;gap:12px}
+        .contact-item{
+            display:flex;gap:15px;align-items:center;padding:16px 18px;border-radius:17px;
+            background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+            transition:.3s;
+        }
+        .contact-item:hover{background:rgba(255,255,255,.12);transform:translateX(5px)}
+        .contact-icon{width:43px;height:43px;border-radius:50%;display:grid;place-items:center;background:rgba(201,151,62,.17);color:var(--gold-light)}
+        .contact-item small{display:block;font-size:.58rem;letter-spacing:.15em;opacity:.55}
+        .contact-item strong{font-size:.82rem;line-height:1.45;display:block;margin-top:2px}
+        .contact-card{
+            padding:35px;border-radius:30px;background:#fff;color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.22);
+        }
+        .contact-card .mini-logo{width:70px;height:70px;border-radius:50%;border:3px solid var(--gold);margin-bottom:20px}
+        .contact-card h3{font:700 2.2rem "Cormorant Garamond",serif;color:var(--wine-dark)}
+        .contact-card p{font-size:.8rem;line-height:1.7;color:var(--muted);margin:8px 0 20px}
+        .contact-card .btn{width:100%;margin-top:10px}
+        .contact-card .light{border:1px solid #eadfce;color:var(--wine-dark);background:#fff}
+        .address-note{margin-top:20px;padding-top:17px;border-top:1px solid #eadfce;font-size:.7rem;line-height:1.6;color:var(--muted)}
+
+        /* ---------- footer ---------- */
+        footer{background:#25040f;color:#fff;padding:32px 5vw 90px;display:flex;justify-content:space-between;align-items:center;gap:25px;flex-wrap:wrap}
+        .footer-brand{display:flex;align-items:center;gap:12px}
+        .footer-brand img{width:45px;height:45px;border-radius:50%;border:2px solid var(--gold)}
+        .footer-brand strong{display:block;font:700 1.1rem "Cormorant Garamond",serif;letter-spacing:.08em}
+        .footer-brand small{font-size:.62rem;opacity:.5}
+        footer .links{display:flex;gap:17px;font-size:.72rem;color:rgba(255,255,255,.65)}
+        footer .links a:hover{color:var(--gold-light)}
+        .copyright{width:100%;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);font-size:.65rem;color:rgba(255,255,255,.42);display:flex;justify-content:space-between;gap:15px}
+
+        /* ---------- floating mobile bar ---------- */
+        .mobile-bar{
+            display:none;position:fixed;bottom:0;left:0;right:0;z-index:1200;
+            padding:9px 10px calc(9px + env(safe-area-inset-bottom));
+            background:rgba(61,6,24,.96);backdrop-filter:blur(18px);
+            grid-template-columns:repeat(3,1fr);gap:7px;box-shadow:0 -10px 30px rgba(0,0,0,.15)
+        }
+        .mobile-bar a{display:grid;place-items:center;padding:11px 5px;border-radius:12px;font-size:.7rem;font-weight:800;color:#fff;background:rgba(255,255,255,.08)}
+        .mobile-bar a:nth-child(2){background:var(--gold);color:var(--wine-dark)}
+
+        .back-top{
+            position:fixed;right:22px;bottom:25px;z-index:1100;width:45px;height:45px;border:0;border-radius:50%;
+            display:grid;place-items:center;background:var(--wine);color:#fff;cursor:pointer;
+            box-shadow:0 10px 30px rgba(61,6,24,.25);opacity:0;visibility:hidden;transform:translateY(10px);transition:.3s;
+        }
+        .back-top.show{opacity:1;visibility:visible;transform:none}
+        .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+        .reveal.visible{opacity:1;transform:none}
+
+        @media (max-width:1000px){
+            .nav-links{gap:16px}
+            .hero-content{grid-template-columns:1fr 0.75fr}
+            .service-grid{grid-template-columns:1fr 1fr}
+            .about-grid{gap:40px}
+            .process-grid{grid-template-columns:1fr 1fr}
+            .step:nth-child(2):after{display:none}
+        }
+        @media (max-width:780px){
+            .nav{padding:12px 5vw}
+            .brand img{width:44px;height:44px}
+            .brand strong{font-size:1.1rem}
+            .nav-links{
+                position:absolute;left:4vw;right:4vw;top:72px;
+                display:none;flex-direction:column;align-items:stretch;gap:0;
+                padding:10px;background:rgba(61,6,24,.98);border:1px solid rgba(255,255,255,.1);
+                border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.25)
+            }
+            .nav-links.open{display:flex}
+            .nav-links a{padding:14px 15px}
+            .nav-links a:after{display:none}
+            .nav-cta{text-align:center;margin:6px 0}
+            .hamb{display:block}
+            .hero{min-height:860px}
+            .hero-cover{background:
+                linear-gradient(180deg,rgba(49,4,20,.94) 0%,rgba(61,6,24,.86) 48%,rgba(61,6,24,.82) 100%),
+                url('images/chamunda-cover.png') center/cover no-repeat}
+            .hero-content{grid-template-columns:1fr;text-align:center;padding-top:115px}
+            .hero .eyebrow{justify-content:center}
+            .hero-copy{margin-left:auto;margin-right:auto}
+            .hero-actions{justify-content:center}
+            .hero-points{justify-content:center}
+            .hero-logo-wrap{margin-top:-5px}
+            .hero-logo-ring{width:250px}
+            .floating-card{right:8%;bottom:0}
+            .hero-scroll{display:none}
+            .section{padding:80px 5vw}
+            .signature{padding:0 5vw 80px}
+            .signature-card{min-height:430px;padding:30px}
+            .about-grid,.contact-grid{grid-template-columns:1fr}
+            .about-visual{min-height:380px}
+            .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:190px}
+            .gallery-item:first-child{grid-row:span 1}
+            .contact-grid{gap:40px}
+            footer{padding-bottom:90px}
+            .mobile-bar{display:grid}
+            .back-top{bottom:85px}
+        }
+        @media (max-width:520px){
+            .hero h1{font-size:3.8rem}
+            .hero-copy{font-size:.9rem}
+            .service-grid,.process-grid,.points{grid-template-columns:1fr}
+            .gallery-grid{grid-template-columns:1fr;grid-auto-rows:250px}
+            .signature-card{border-radius:24px}
+            .signature-content .script{font-size:2.2rem}
+            .contact-card{padding:27px}
+            .copyright{flex-direction:column}
+            .about-logo{width:260px}
+            .stamp{right:0;bottom:0}
+        }
+        @media (prefers-reduced-motion:reduce){
+            *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+        }
+    </style>
 </head>
 <body>
-  <div class="loader" id="loader"><div class="loader-mark">✂</div><div class="loader-name">CHAMUNDA</div><div class="loader-sub">LADIES & GENTS TAILORS</div><div class="loader-line"></div></div>
+    <div class="progress"><span id="progressBar"></span></div>
 
-  <header class="nav" id="nav">
-    <a class="brand" href="#home" aria-label="Chamunda Tailors home">
-      <span class="brand-mark">✂</span>
-      <span><b>CHAMUNDA</b><small>LADIES & GENTS TAILORS</small></span>
-    </a>
-    <nav id="menu">
-      <a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a>
-      <a class="nav-cta" href="tel:+919714422897">Call Now</a>
-    </nav>
-    <button class="hamb" id="hamb" aria-label="Open menu"><i></i><i></i><i></i></button>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-noise"></div>
-      <div class="hero-content reveal">
-        <div class="eyebrow"><span></span> Tailoring in Gandhinagar</div>
-        <h1>Stitched to your<br><em>style.</em></h1>
-        <p>Professional ladies & gents tailoring, custom stitching and alterations with attention to fitting, finishing and your personal style.</p>
-        <div class="actions">
-          <a class="btn primary" href="https://wa.me/919714422897?text=Hello%20Chamunda%20Ladies%20and%20Gents%20Tailors%2C%20I%20would%20like%20to%20enquire%20about%20tailoring." target="_blank" rel="noopener">WhatsApp Us <span>↗</span></a>
-          <a class="btn ghost" href="https://maps.app.goo.gl/41xMT7ArqxBMP4M17?g_st=aw" target="_blank" rel="noopener">Get Directions <span>↗</span></a>
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <img class="loader-logo" src="images/chamunda-logo.png" alt="Chamunda Tailors">
+            <div class="loader-title">CHAMUNDA</div>
+            <div class="loader-sub">LADIES &amp; GENTS TAILORS</div>
+            <div class="loader-line"></div>
         </div>
-        <div class="hero-meta"><span>✦ Ladies Tailoring</span><span>✦ Gents Tailoring</span><span>✦ Alterations</span></div>
-      </div>
-      <div class="hero-art reveal">
-        <div class="ring r1"></div><div class="ring r2"></div>
-        <div class="fabric-card">
-          <div class="fabric-fold"></div>
-          <div class="thread">✦</div>
-          <div class="card-caption"><span>Custom</span><b>Tailoring</b></div>
+    </div>
+
+    <header class="nav" id="nav">
+        <a class="brand" href="#home" aria-label="Chamunda Tailors Home">
+            <img src="images/chamunda-logo.png" alt="Chamunda Ladies & Gents Tailors logo">
+            <span>
+                <strong>CHAMUNDA</strong>
+                <small>LADIES &amp; GENTS TAILORS</small>
+            </span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a class="nav-cta" href="tel:+919714422897">Call Now</a></li>
+        </ul>
+
+        <button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-cover"></div>
+
+            <div class="hero-content">
+                <div class="reveal">
+                    <div class="eyebrow"><i></i> Tailoring in Sector 24, Gandhinagar</div>
+                    <h1>Stitching your <em>style.</em></h1>
+                    <p class="hero-copy">
+                        Ladies &amp; gents tailoring, custom stitching and alterations —
+                        crafted around your measurements, comfort and personal style.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="btn primary" href="https://wa.me/919714422897?text=Hello%20Chamunda%20Ladies%20and%20Gents%20Tailors%2C%20I%20would%20like%20to%20enquire%20about%20tailoring." target="_blank" rel="noopener">WhatsApp Us ↗</a>
+                        <a class="btn outline" href="https://www.google.com/maps/search/?api=1&query=Chamunda+Ladies+and+Gents+Tailors,+Ambaji+Chowk,+Sector+24,+Gandhinagar,+Gujarat" target="_blank" rel="noopener">Get Directions ↗</a>
+                    </div>
+
+                    <div class="hero-points">
+                        <span><b>✦</b> Ladies Tailoring</span>
+                        <span><b>✦</b> Gents Tailoring</span>
+                        <span><b>✦</b> Alterations</span>
+                    </div>
+                </div>
+
+                <div class="hero-logo-wrap reveal">
+                    <div class="hero-logo-ring">
+                        <img src="images/chamunda-logo.png" alt="Chamunda Ladies & Gents Tailors">
+                    </div>
+                    <div class="floating-card">
+                        <small>YOUR STYLE · OUR STITCHING</small>
+                        <strong>Perfect Fit For Every You.</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-scroll">SCROLL TO EXPLORE ↓</div>
+        </section>
+
+        <div class="ticker" aria-hidden="true">
+            <div class="ticker-track">
+                <span>TAILORED WITH CARE</span><b>✦</b>
+                <span>YOUR STYLE, OUR CRAFT</span><b>✦</b>
+                <span>PERFECT FIT ALWAYS</span><b>✦</b>
+                <span>TRADITIONAL DESIGNS</span><b>✦</b>
+                <span>MODERN STYLES</span><b>✦</b>
+                <span>GANDHINAGAR</span><b>✦</b>
+                <span>TAILORED WITH CARE</span><b>✦</b>
+                <span>YOUR STYLE, OUR CRAFT</span><b>✦</b>
+                <span>PERFECT FIT ALWAYS</span><b>✦</b>
+                <span>TRADITIONAL DESIGNS</span><b>✦</b>
+                <span>MODERN STYLES</span><b>✦</b>
+                <span>GANDHINAGAR</span><b>✦</b>
+            </div>
         </div>
-        <div class="floating-chip chip-one">PRECISION<br><b>FITTING</b></div>
-        <div class="floating-chip chip-two">MADE<br><b>FOR YOU</b></div>
-      </div>
-      <div class="scroll-note">SCROLL TO EXPLORE <span>↓</span></div>
-    </section>
 
-    <div class="ticker"><div>TAILORED WITH CARE&nbsp;&nbsp; ✦ &nbsp;&nbsp;YOUR STYLE, OUR CRAFT&nbsp;&nbsp; ✦ &nbsp;&nbsp;GANDHINAGAR&nbsp;&nbsp; ✦ &nbsp;&nbsp;TAILORED WITH CARE&nbsp;&nbsp; ✦ &nbsp;&nbsp;</div></div>
+        <section class="section" id="services">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow"><i></i> What we do</div>
+                    <h2>Tailoring for <em>every occasion.</em></h2>
+                    <p>From everyday wear to special outfits, we focus on clean stitching, comfortable fitting and a finish you can feel confident in.</p>
+                </div>
 
-    <section class="section services" id="services">
-      <div class="section-head reveal"><div class="eyebrow"><span></span> What we do</div><h2>Tailoring for <em>every occasion.</em></h2><p>From everyday wear to special outfits, we focus on clean stitching and a comfortable fit.</p></div>
-      <div class="service-grid">
-        <article class="service reveal"><div class="service-num">01</div><div class="service-icon">◌</div><h3>Ladies Tailoring</h3><p>Custom stitching and fitting for ladies' wear, made around your measurements and preferred style.</p><a href="#contact">Enquire →</a></article>
-        <article class="service reveal"><div class="service-num">02</div><div class="service-icon">◇</div><h3>Gents Tailoring</h3><p>Tailoring for shirts, trousers, kurtas and other gents' garments with attention to proportion and comfort.</p><a href="#contact">Enquire →</a></article>
-        <article class="service reveal"><div class="service-num">03</div><div class="service-icon">✂</div><h3>Alterations & Fitting</h3><p>Need a better fit? We handle alterations and adjustments to make your existing clothes feel right.</p><a href="#contact">Enquire →</a></article>
-        <article class="service reveal"><div class="service-num">04</div><div class="service-icon">✦</div><h3>Custom Stitching</h3><p>Discuss your requirements, measurements and design preferences and get a garment made to suit you.</p><a href="#contact">Enquire →</a></article>
-      </div>
-    </section>
+                <div class="service-grid">
+                    <article class="service reveal">
+                        <div class="service-num">01</div>
+                        <div class="service-icon">♕</div>
+                        <h3>Ladies Tailoring</h3>
+                        <p>Custom stitching and fitting for ladies' wear, made around your measurements and preferred style.</p>
+                        <a href="#contact">Enquire →</a>
+                    </article>
+                    <article class="service reveal">
+                        <div class="service-num">02</div>
+                        <div class="service-icon">◇</div>
+                        <h3>Gents Tailoring</h3>
+                        <p>Tailoring for shirts, trousers, kurtas and other gents' garments with attention to proportion and comfort.</p>
+                        <a href="#contact">Enquire →</a>
+                    </article>
+                    <article class="service reveal">
+                        <div class="service-num">03</div>
+                        <div class="service-icon">✂</div>
+                        <h3>Alterations &amp; Fitting</h3>
+                        <p>Need a better fit? We handle adjustments to help your existing clothes feel comfortable and look neat.</p>
+                        <a href="#contact">Enquire →</a>
+                    </article>
+                    <article class="service reveal">
+                        <div class="service-num">04</div>
+                        <div class="service-icon">✦</div>
+                        <h3>Custom Stitching</h3>
+                        <p>Discuss your measurements and design preferences and get a garment made to suit your requirements.</p>
+                        <a href="#contact">Enquire →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-    <section class="split about" id="about">
-      <div class="about-visual reveal"><div class="monogram">C</div><div class="about-stamp">CRAFT<br><b>WITH CARE</b></div></div>
-      <div class="about-copy reveal"><div class="eyebrow"><span></span> About Chamunda</div><h2>Your clothes.<br><em>Your fit.</em></h2>
-        <p>Chamunda Ladies and Gents Tailors is a local tailoring shop serving customers in Sector 24, Gandhinagar, near Ambaji Chowk.</p>
-        <p>We believe good tailoring is about more than stitching — it is about fit, comfort, neat finishing and understanding what the customer wants.</p>
-        <div class="about-points"><span>✓ Personal attention</span><span>✓ Custom measurements</span><span>✓ Neat finishing</span><span>✓ Ladies & gents</span></div>
-      </div>
-    </section>
+        <section class="signature">
+            <div class="signature-card reveal">
+                <div class="signature-content">
+                    <div class="script">Your Style. Our Stitching.</div>
+                    <h3>Traditional designs.<br>Modern styles.</h3>
+                    <p>Personal attention, custom measurements and neat finishing — all brought together for a fit that feels like yours.</p>
+                </div>
+            </div>
+        </section>
 
-    <section class="section process">
-      <div class="section-head centered reveal"><div class="eyebrow"><span></span> Simple process</div><h2>From measurement to <em>perfect fit.</em></h2></div>
-      <div class="process-grid">
-        <div class="step reveal"><b>01</b><h3>Discuss</h3><p>Share the garment, design and fitting you need.</p></div>
-        <div class="step reveal"><b>02</b><h3>Measure</h3><p>We take the measurements needed for your garment.</p></div>
-        <div class="step reveal"><b>03</b><h3>Stitch</h3><p>Your garment is stitched according to the agreed requirements.</p></div>
-        <div class="step reveal"><b>04</b><h3>Fit & Finish</h3><p>Check the fit and make adjustments where required.</p></div>
-      </div>
-    </section>
+        <section class="section about" id="about">
+            <div class="about-grid">
+                <div class="about-visual reveal">
+                    <img class="about-logo" src="images/chamunda-logo.png" alt="Chamunda Tailors logo">
+                    <div class="stamp">CRAFT<br><strong>WITH CARE</strong><br>✦</div>
+                </div>
 
-    <section class="gallery section" id="gallery">
-      <div class="section-head reveal"><div class="eyebrow"><span></span> Our work</div><h2>See the <em>craft.</em></h2><p>Add your real shop, tailoring and finished-garment photos here. Real photos will build much more trust than stock images.</p></div>
-      <div class="photo-grid">
-        <div class="photo p1 reveal"><img src="images/shop-front.jpg" alt="Chamunda Ladies and Gents Tailors shop front"><span>Our Shop</span><small>Chamunda Ladies and Gents Tailors</small></div>
-        <div class="photo p2 reveal"><img src="images/tailoring-work.jpg" alt="Tailoring work at Chamunda Ladies and Gents Tailors"><span>Tailoring Work</span><small>Custom stitching at our shop</small></div>
-        <div class="photo p3 reveal"><img src="images/shop-display.jpg" alt="Garments at Chamunda Ladies and Gents Tailors"><span>Garments</span><small>Ladies and gents clothing</small></div>
-        <div class="photo p4 reveal"><img src="images/shop-sign.jpg" alt="Chamunda Ladies and Gents Tailors signboard"><span>Our Signboard</span><small>Located in Sector 24, Gandhinagar</small></div>
-      </div>
-    </section>
+                <div class="about-copy reveal">
+                    <div class="eyebrow"><i></i> About Chamunda</div>
+                    <h2>Your clothes.<br><em>Your fit.</em></h2>
+                    <p>Chamunda Ladies and Gents Tailors is a local tailoring shop serving customers in Sector 24, Gandhinagar, near Ambaji Chowk.</p>
+                    <p>We believe good tailoring is about more than stitching — it is about fit, comfort, neat finishing and understanding what the customer wants.</p>
 
-    <section class="contact" id="contact">
-      <div class="contact-inner">
-        <div class="contact-copy reveal"><div class="eyebrow"><span></span> Visit or contact us</div><h2>Let's make something<br><em>that fits.</em></h2>
-          <p>For enquiries, measurements and tailoring requirements, call or WhatsApp us.</p>
-          <div class="contact-list">
-            <a href="tel:+919714422897"><span>☎</span><div><small>CALL</small><b>+91 97144 22897</b></div></a>
-            <a href="mailto:rajeshdarji1991@gmail.com"><span>✉</span><div><small>EMAIL</small><b>rajeshdarji1991@gmail.com</b></div></a>
-            <a href="https://maps.app.goo.gl/41xMT7ArqxBMP4M17?g_st=aw" target="_blank" rel="noopener"><span>⌖</span><div><small>LOCATION</small><b>195, Harsiddhi Nagar Society, Near Ambaji Mata Temple, Doubledekar, Sector 24, Gandhinagar – 382024</b></div></a>
-            <a href="https://www.instagram.com/rkdarji2225/" target="_blank" rel="noopener"><span>◎</span><div><small>INSTAGRAM</small><b>@rkdarji2225</b></div></a>
-          </div>
+                    <div class="points">
+                        <div class="point"><b>✓</b> Personal attention</div>
+                        <div class="point"><b>✓</b> Custom measurements</div>
+                        <div class="point"><b>✓</b> Neat finishing</div>
+                        <div class="point"><b>✓</b> Ladies &amp; gents</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="process">
+            <div class="container">
+                <div class="section-head center reveal">
+                    <div class="eyebrow"><i></i> Simple process</div>
+                    <h2>From measurement to <em>perfect fit.</em></h2>
+                    <p>Our simple four-step approach keeps your tailoring requirements clear from start to finish.</p>
+                </div>
+
+                <div class="process-grid">
+                    <div class="step reveal"><b>01</b><h3>Discuss</h3><p>Share the garment, design and fitting you need.</p></div>
+                    <div class="step reveal"><b>02</b><h3>Measure</h3><p>We take the measurements needed for your garment.</p></div>
+                    <div class="step reveal"><b>03</b><h3>Stitch</h3><p>Your garment is stitched according to the agreed requirements.</p></div>
+                    <div class="step reveal"><b>04</b><h3>Fit &amp; Finish</h3><p>Check the fit and make adjustments where required.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section gallery" id="gallery">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow"><i></i> Our work</div>
+                    <h2>See the <em>craft.</em></h2>
+                    <p>Replace the gallery paths below with your real shop, tailoring and finished-garment photographs.</p>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item reveal">
+                        <img src="images/shop-front.jpg" alt="Chamunda Tailors shop front" loading="lazy">
+                        <div class="gallery-label"><strong>Our Shop</strong><small>CHAMUNDA LADIES &amp; GENTS TAILORS</small></div>
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="images/tailoring-work.jpg" alt="Tailoring work" loading="lazy">
+                        <div class="gallery-label"><strong>Tailoring Work</strong><small>CUSTOM STITCHING</small></div>
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="images/shop-display.jpg" alt="Garment display" loading="lazy">
+                        <div class="gallery-label"><strong>Garments</strong><small>LADIES &amp; GENTS</small></div>
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="images/shop-sign.jpg" alt="Chamunda Tailors signboard" loading="lazy">
+                        <div class="gallery-label"><strong>Our Signboard</strong><small>SECTOR 24, GANDHINAGAR</small></div>
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="images/chamunda-cover.png" alt="Chamunda Tailors brand banner" loading="lazy">
+                        <div class="gallery-label"><strong>Our Brand</strong><small>STITCHING YOUR STYLE</small></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="contact-grid">
+                <div class="contact-copy reveal">
+                    <div class="eyebrow"><i></i> Visit or contact us</div>
+                    <h2>Let's make something<br><em>that fits.</em></h2>
+                    <p>For enquiries, measurements and tailoring requirements, call or WhatsApp us.</p>
+
+                    <div class="contact-list">
+                        <a class="contact-item" href="tel:+919714422897">
+                            <span class="contact-icon">☎</span>
+                            <span><small>CALL</small><strong>+91 97144 22897</strong></span>
+                        </a>
+                        <a class="contact-item" href="mailto:rajeshdarji1991@gmail.com">
+                            <span class="contact-icon">✉</span>
+                            <span><small>EMAIL</small><strong>rajeshdarji1991@gmail.com</strong></span>
+                        </a>
+                        <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Chamunda+Ladies+and+Gents+Tailors,+Ambaji+Chowk,+Sector+24,+Gandhinagar,+Gujarat" target="_blank" rel="noopener">
+                            <span class="contact-icon">⌖</span>
+                            <span><small>LOCATION</small><strong>195, Harsiddhi Nagar Society, Near Ambaji Mata Temple, Doubledekar, Sector 24, Gandhinagar – 382024</strong></span>
+                        </a>
+                        <a class="contact-item" href="https://www.instagram.com/rkdarji2225/" target="_blank" rel="noopener">
+                            <span class="contact-icon">◎</span>
+                            <span><small>INSTAGRAM</small><strong>@rkdarji2225</strong></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-card reveal">
+                    <img class="mini-logo" src="images/chamunda-logo.png" alt="Chamunda logo">
+                    <h3>Book an enquiry</h3>
+                    <p>Send your tailoring requirement on WhatsApp and we'll get back to you.</p>
+                    <a class="btn primary" href="https://wa.me/919714422897?text=Hello%20Chamunda%20Ladies%20and%20Gents%20Tailors%2C%20I%20would%20like%20to%20enquire%20about%20tailoring." target="_blank" rel="noopener">Start on WhatsApp ↗</a>
+                    <a class="btn light" href="tel:+919714422897">Call +91 97144 22897</a>
+                    <div class="address-note">📍 195, Harsiddhi Nagar Society · Near Ambaji Mata Temple · Sector 24, Gandhinagar – 382024</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-brand">
+            <img src="images/chamunda-logo.png" alt="Chamunda logo">
+            <span><strong>CHAMUNDA LADIES &amp; GENTS TAILORS</strong><small>Tailoring in Sector 24, Gandhinagar</small></span>
         </div>
-        <div class="contact-card reveal">
-          <div class="card-top"><span>CHAMUNDA</span><span>✂</span></div>
-          <h3>Book an enquiry</h3>
-          <p>Send us your requirement on WhatsApp and we'll get back to you.</p>
-          <a class="btn primary wide" href="https://wa.me/919714422897?text=Hello%20Chamunda%20Ladies%20and%20Gents%20Tailors%2C%20I%20would%20like%20to%20enquire%20about%20tailoring." target="_blank" rel="noopener">Start on WhatsApp ↗</a>
-          <a class="btn light wide" href="tel:+919714422897">Call +91 97144 22897</a>
-          <div class="location-note">📍 195, Harsiddhi Nagar Society · Near Ambaji Mata Temple · Sector 24, Gandhinagar</div>
+        <div class="links">
+            <a href="#home">Home</a><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a>
         </div>
-      </div>
-    </section>
-  </main>
+        <div class="copyright">
+            <span>© <span id="year"></span> Chamunda Ladies and Gents Tailors. All Rights Reserved.</span>
+            <span>Stitching Your Style ♥</span>
+        </div>
+    </footer>
 
-  <footer><div class="footer-brand"><span class="brand-mark">✂</span><div><b>CHAMUNDA LADIES & GENTS TAILORS</b><small>Tailoring in Sector 24, Gandhinagar</small></div></div><div>© <span id="year"></span> Chamunda Ladies and Gents Tailors</div><div><a href="https://www.instagram.com/rkdarji2225/" target="_blank" rel="noopener">Instagram</a> · <a href="tel:+919714422897">Call</a> · <a href="#contact">Contact</a></div></footer>
-  <button class="back-to-top" id="backToTop" aria-label="Go to top" title="Go to top">↑</button>
-  <div class="mobile-bar"><a href="tel:+919714422897">Call</a><a href="https://wa.me/919714422897" target="_blank" rel="noopener">WhatsApp</a><a href="https://maps.app.goo.gl/41xMT7ArqxBMP4M17?g_st=aw" target="_blank" rel="noopener">Directions</a></div>
-  <script src="script.js"></script>
+    <div class="mobile-bar">
+        <a href="tel:+919714422897">☎ Call</a>
+        <a href="https://wa.me/919714422897" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Chamunda+Ladies+and+Gents+Tailors,+Ambaji+Chowk,+Sector+24,+Gandhinagar,+Gujarat" target="_blank" rel="noopener">⌖ Directions</a>
+    </div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+
+    <script>
+        const loader = document.getElementById("loader");
+        const nav = document.getElementById("nav");
+        const hamb = document.getElementById("hamb");
+        const navLinks = document.getElementById("navLinks");
+        const backTop = document.getElementById("backTop");
+        const progressBar = document.getElementById("progressBar");
+
+        window.addEventListener("load", () => {
+            setTimeout(() => loader.classList.add("hide"), 900);
+        });
+
+        hamb.addEventListener("click", () => {
+            const open = navLinks.classList.toggle("open");
+            hamb.setAttribute("aria-expanded", open);
+        });
+
+        navLinks.querySelectorAll("a").forEach(a => {
+            a.addEventListener("click", () => navLinks.classList.remove("open"));
+        });
+
+        window.addEventListener("scroll", () => {
+            nav.classList.toggle("scrolled", window.scrollY > 45);
+            backTop.classList.toggle("show", window.scrollY > 600);
+
+            const max = document.documentElement.scrollHeight - innerHeight;
+            progressBar.style.transform = `scaleX(${max ? window.scrollY / max : 0})`;
+        }, { passive:true });
+
+        backTop.addEventListener("click", () => window.scrollTo({top:0,behavior:"smooth"}));
+
+        const sections = document.querySelectorAll("main section[id]");
+        const navItems = document.querySelectorAll(".nav-links a[href^='#']");
+
+        const sectionObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                navItems.forEach(link => {
+                    link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+                });
+            });
+        }, {rootMargin:"-35% 0px -55% 0px", threshold:0});
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach((entry, index) => {
+                if (!entry.isIntersecting) return;
+                entry.target.style.transitionDelay = `${Math.min(index * 45, 250)}ms`;
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+            });
+        }, {threshold:.12});
+
+        document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Small desktop-only pointer tilt for a premium tactile feel.
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches && matchMedia("(pointer:fine)").matches) {
+            document.querySelectorAll(".service,.contact-card").forEach(card => {
+                card.addEventListener("pointermove", e => {
+                    const r = card.getBoundingClientRect();
+                    const x = (e.clientX-r.left)/r.width-.5;
+                    const y = (e.clientY-r.top)/r.height-.5;
+                    card.style.transform = `perspective(800px) rotateX(${(-y*2.2).toFixed(2)}deg) rotateY(${(x*2.5).toFixed(2)}deg) translateY(-7px)`;
+                });
+                card.addEventListener("pointerleave", () => card.style.transform = "");
+            });
+        }
+    </script>
 </body>
 </html>
